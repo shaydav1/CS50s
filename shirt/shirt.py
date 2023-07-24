@@ -28,14 +28,13 @@ def p_shirt(your_image, result_image):
         your_image = Image.open(your_image)
         shirt = Image.open('shirt.png')
         # shirt = Image.open('/workspaces/51095931/shirt/shirt.png')
-        # fitting the imgage to the shirt size
-        your_image = ImageOps.fit(your_image, size = (600, 600))
+        # fitting the image to the shirt size
+        your_image = ImageOps.fit(your_image, size=(600, 600))
         # paste shirt on image when shirt used as mask
         your_image.paste(shirt, shirt)
         your_image.save(result_image, format=None)
     except FileNotFoundError:
         sys.exit("Input does not exist")
-
 
 
 if __name__ == "__main__":
