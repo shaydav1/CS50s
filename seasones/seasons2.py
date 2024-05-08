@@ -19,7 +19,8 @@ def check_date(prompt):
     while True:
         try:
             date_of_birth = datetime.strptime(prompt, "%Y-%m-%d")
-            date_of_birth_year, date_of_birth_month, date_of_birth_day = date_of_birth.year, date_of_birth.month, date_of_birth.day
+            date_of_birth_year, date_of_birth_month, date_of_birth_day = date_of_birth.year, date_of_birth.month, \
+                date_of_birth.day
             return date_of_birth_year, date_of_birth_month, date_of_birth_day
         except ValueError:
             sys.exit()
@@ -27,8 +28,8 @@ def check_date(prompt):
 
 # creating date parts of today
 def today():
-    today = date.today()
-    today_year, today_month, today_day = today.year, today.month, today.day
+    today_ = date.today()
+    today_year, today_month, today_day = today_.year, today_.month, today_.day
     return today_year, today_month, today_day
 
 
