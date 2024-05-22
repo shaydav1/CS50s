@@ -1,5 +1,8 @@
 import sys
+import inflect
 from datetime import date, datetime
+
+p = inflect.engine()
 
 
 def main():
@@ -11,7 +14,14 @@ def main():
     year_diff = today_year - date_of_birth_year
     month_diff = abs(today_month - date_of_birth_month)
     day_diff = abs(today_day - date_of_birth_day)
+
+    # calculating minutes in each date part
+    year_minutes = year_diff * 365 * 24 * 60
+    month_minutes = month_diff * 30 * 24 * 60
+    day_minutes = day_diff * 24 * 60
+    minutes = year_minutes + month_minutes + day_minutes
     print(year_diff, month_diff, day_diff)
+    print(p.number_to_words(minutes))
 
 
 # converting user input to datetime object over string
