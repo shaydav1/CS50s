@@ -47,5 +47,3 @@ def today():
 # datetime.now().year)
 if __name__ == "__main__":
     main()
-
-# Five hundred twenty-five thousand, six hundred minutes
