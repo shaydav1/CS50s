@@ -20,8 +20,9 @@ def main():
     month_minutes = month_diff * 30 * 24 * 60
     day_minutes = day_diff * 24 * 60
     minutes = year_minutes + month_minutes + day_minutes
-    print(year_diff, month_diff, day_diff)
-    print(p.number_to_words(minutes))
+
+    # print(year_diff, month_diff, day_diff)
+    print(p.number_to_words(minutes, andword='').capitalize() + " minutes")
 
 
 # converting user input to datetime object over string
@@ -46,3 +47,5 @@ def today():
 # datetime.now().year)
 if __name__ == "__main__":
     main()
+
+# Five hundred twenty-five thousand, six hundred minutes
