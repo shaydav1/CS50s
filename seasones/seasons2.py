@@ -1,5 +1,6 @@
 import sys
 import inflect
+from calendar import leapdays
 from datetime import date, datetime
 
 p = inflect.engine()
@@ -11,12 +12,17 @@ def main():
                                                                                   "'YYYY-MM-DD' format :"))
     # Call today() function to get the current date components
     today_year, today_month, today_day = today()
+
+    # Calculating date differences
     year_diff = today_year - date_of_birth_year
     month_diff = abs(today_month - date_of_birth_month)
     day_diff = abs(today_day - date_of_birth_day)
 
+    # Checking for leap days
+    leap_days_in_year = leapdays(date_of_birth_year, today_year)
+
     # calculating minutes in each date part
-    year_minutes = year_diff * 365 * 24 * 60
+    year_minutes = year_diff * (365+leap_days_in_year) * 24 * 60
     month_minutes = month_diff * 30 * 24 * 60
     day_minutes = day_diff * 24 * 60
     minutes = year_minutes + month_minutes + day_minutes
