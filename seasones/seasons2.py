@@ -1,55 +1,34 @@
-import sys
-import inflect
 from calendar import leapdays
 from datetime import date, datetime
+import inflect
 
 p = inflect.engine()
 
 
 def main():
-    # Call check_date() function to get the input date components
-    date_of_birth_year, date_of_birth_month, date_of_birth_day = check_date(input("Please enter date of birth in "
-                                                                                  "'YYYY-MM-DD' format :"))
-    # Call today() function to get the current date components
-    today_year, today_month, today_day = today()
+    start_date = date.today()
+    end_date = datetime.strptime(input("Please enter date of birth in 'YYYY-MM-DD' format :"), '%Y-%m-%d').date()
 
     # Calculating date differences
-    year_diff = today_year - date_of_birth_year
-    month_diff = abs(today_month - date_of_birth_month)
-    day_diff = abs(today_day - date_of_birth_day)
+    day_diff = get_diff(start_date, end_date)
 
     # Checking for leap days
-    leap_days_in_year = leapdays(date_of_birth_year, today_year)
+    leap_days_in_period = leapdays(start_date.year, end_date.year)
 
-    # calculating minutes in each date part
-    year_minutes = year_diff * (365+leap_days_in_year) * 24 * 60
-    month_minutes = month_diff * 30 * 24 * 60
+    # Calculating minutes in each date part
     day_minutes = day_diff * 24 * 60
-    minutes = year_minutes + month_minutes + day_minutes
+    leap_days_minutes = leap_days_in_period * 24 * 60
+    minutes = day_minutes + leap_days_minutes
 
     # print(year_diff, month_diff, day_diff)
     print(p.number_to_words(minutes, andword='').capitalize() + " minutes")
 
 
-# converting user input to datetime object over string
-def check_date(prompt):
-    while True:
-        try:
-            date_of_birth = datetime.strptime(prompt, "%Y-%m-%d")
-            date_of_birth_year, date_of_birth_month, date_of_birth_day = date_of_birth.year, date_of_birth.month, \
-                date_of_birth.day
-            return date_of_birth_year, date_of_birth_month, date_of_birth_day
-        except ValueError:
-            sys.exit()
+# defining the function for calculating difference between dates
+def get_diff(start_date, end_date):
+    diff = end_date - start_date
+    return diff.days
 
 
-# creating date parts of today
-def today():
-    today_ = date.today()
-    today_year, today_month, today_day = today_.year, today_.month, today_.day
-    return today_year, today_month, today_day
-
-
-# datetime.now().year)
 if __name__ == "__main__":
     main()
