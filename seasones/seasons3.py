@@ -12,7 +12,6 @@ def main():
                                                                                   "'YYYY-MM-DD' format :"))
     # Call today() function to get the current date components
     today_year, today_month, today_day = today()
-
     # Calculating date differences
     year_diff = today_year - date_of_birth_year
     month_diff = abs(today_month - date_of_birth_month)
@@ -21,7 +20,7 @@ def main():
     # Checking for leap days
     leap_days_in_period = leapdays(date_of_birth_year, today_year)
 
-    # Calculating minutes in each date part
+    # calculating minutes in each date part
     year_minutes = year_diff * 365 * 24 * 60
     month_minutes = month_diff * 30 * 24 * 60
     day_minutes = day_diff * 24 * 60
@@ -32,7 +31,7 @@ def main():
     print(p.number_to_words(minutes, andword='').capitalize() + " minutes")
 
 
-# Converting user input to datetime object over string
+# converting user input to datetime object over string
 def check_date(prompt):
     while True:
         try:
@@ -41,10 +40,10 @@ def check_date(prompt):
                 date_of_birth.day
             return date_of_birth_year, date_of_birth_month, date_of_birth_day
         except ValueError:
-            sys.exit()
+            sys.exit("Wrong date format")
 
 
-# Creating date parts of today
+# creating date parts of today
 def today():
     today_ = date.today()
     today_year, today_month, today_day = today_.year, today_.month, today_.day
